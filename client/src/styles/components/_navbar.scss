@@ -1,0 +1,125 @@
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #013914;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  transition: 0.5s all ease;
+  font-family: "Montserrat", sans-serif;
+
+  &.active {
+    background-color: white;
+    color: black;
+
+    button {
+      background-color: white !important;
+      color: #1dbf73 !important;
+      border: 1px solid #1dbf73 !important;
+    }
+  }
+
+  .navbar__container {
+    width: 100%;
+    max-width: 1440px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    .navbar__logo {
+      font-size: 34px;
+      font-weight: bold;
+
+      .navbar__logo__dot {
+        font-weight: bold;
+        color: #1dbf73;
+      }
+    }
+    .navbar__links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-weight: 500;
+
+      li {
+        white-space: nowrap;
+        cursor: pointer;
+        &:hover {
+          color: #1dbf73;
+        }
+      }
+
+      .navbar__user {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        position: relative;
+
+        img {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        .navbar__user__options {
+          position: absolute;
+          top: 50px;
+          right: 0;
+          padding: 20px;
+          background-color: white;
+          border-radius: 10px;
+          z-index: 999;
+          border: 1px solid lightgrey;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          width: 200px;
+          font-weight: 300;
+          color: gray;
+          li {
+            &:hover {
+              color: #1dbf73;
+            }
+          }
+        }
+      }
+
+      button {
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: 1px solid white;
+        background-color: transparent;
+
+        &:hover {
+          background-color: #1dbf73;
+          border-color: #1dbf73;
+        }
+      }
+    }
+  }
+
+  hr {
+    width: calc(100% - 2px);
+    height: 0;
+    border-top: 0.5px solid #ebe9e9;
+    border-bottom: 0.5px solid #ebe9e9;
+  }
+
+  .navbar__menu {
+    width: 100%;
+    max-width: 1440px;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    color: gray;
+    font-weight: 300;
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
+}
