@@ -1,7 +1,8 @@
+import Featured from "@components/Featured"
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div><Featured /></div>
   )
 }
 

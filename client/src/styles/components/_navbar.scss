@@ -43,6 +43,12 @@
       gap: 24px;
       font-weight: 500;
 
+      @media (max-width: 768px) {
+        & > li {
+          display: none;
+        }
+      }
+
       li {
         white-space: nowrap;
         cursor: pointer;
