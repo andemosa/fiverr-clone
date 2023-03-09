@@ -6,7 +6,7 @@
   color: white;
   padding: 0 60px;
 
-  @media (max-width: 992px) {
+  @media (max-width: 1024px) {
     padding: 60px;
   }
 
@@ -134,9 +134,34 @@
         object-fit: contain;
       }
 
-      @media (max-width: 992px) {
+      @media (max-width: 1024px) {
         display: none;
       }
+    }
+  }
+}
+
+.trusted {
+  background-color: #fafafa;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+
+  .trusted__container {
+    max-width: 760px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: rgb(200, 200, 200);
+    font-weight: 500;
+
+    img{
+      height: 50px;
+      object-fit: contain;
     }
   }
 }
