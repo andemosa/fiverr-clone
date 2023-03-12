@@ -4,22 +4,18 @@
   justify-content: center;
   background-color: #013914;
   color: white;
-  padding: 0 60px;
 
   @media (max-width: 1024px) {
-    padding: 60px;
-  }
-
-  @media (max-width: 768px) {
-    padding: 60px 40px;
+    padding: 60px 0;
   }
 
   @media (max-width: 576px) {
-    padding: 40px 20px;
+    padding: 40px 0;
   }
 
   .featured__container {
-    max-width: 1400px;
+    width: 90%;
+    max-width: 1440px;
     display: flex;
     gap: 20px;
     align-items: center;
@@ -147,7 +143,7 @@
   display: flex;
   justify-content: center;
 
-  @media (max-width: 768px) {
+  @media (max-width: 576px) {
     display: none;
   }
 

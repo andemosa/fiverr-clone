@@ -1,12 +1,16 @@
 import Featured from "@components/Featured";
-import SliderComp from "@components/Slider";
+import Categories from "@components/Categories";
+import Explore from "@components/Explore";
+import Projects from "@components/Projects";
 
 const Home = () => {
   return (
-    <div>
+    <>
       <Featured />
-      <SliderComp />
-    </div>
+      <Categories />
+      <Explore />
+      <Projects />
+    </>
   );
 };
 

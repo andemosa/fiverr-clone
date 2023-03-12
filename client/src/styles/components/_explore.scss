@@ -1,0 +1,158 @@
+.features {
+    background-color: #f1fdf7;
+    display: flex;
+    justify-content: center;
+    padding: 100px 0px;
+  
+    &.dark {
+      background-color: #0d084d;
+  
+      h1 {
+        color: white;
+      }
+  
+      i {
+        font-weight: 300;
+      }
+  
+      p {
+        margin-bottom: 20px;
+        color: white;
+      }
+  
+      .title {
+        color: white;
+        font-weight: 300;
+        font-size: 14px;
+      }
+  
+      button {
+        background-color: #1dbf73;
+        border: none;
+        color: white;
+        padding: 10px 25px;
+        border-radius: 5px;
+        width: max-content;
+        margin-top: 20px;
+      }
+    }
+  
+    &__container {
+      width: 90%;
+      max-width: 1440px;
+      display: flex;
+      align-items: center;
+      gap: 100px;
+      @media (max-width: 1024px) {
+        flex-direction: column;
+      }
+    }
+  
+    &__item {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      &:first-child {
+        flex: 2;
+      }
+      &:last-child {
+        flex: 3;
+      }
+  
+      img {
+        width: 100%;
+      }
+      h1 {
+        font-weight: 500;
+        margin-bottom: 10px;
+      }
+      &-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 500;
+        font-size: 18px;
+        color: #666;
+        img {
+          width: 24px;
+          height: 24px;
+        }
+      }
+      p {
+        font-size: 18px;
+        font-weight: 300;
+        color: gray;
+        line-height: 28px;
+        letter-spacing: 1px;
+      }
+  
+      video {
+        width: 100%;
+      }
+    }
+  }
+  
+  .explore {
+    display: flex;
+    justify-content: center;
+    padding: 100px 0px;
+  
+    &__container {
+      width: 90%;
+      max-width: 1440px;
+  
+      @media (max-width: 576px) {
+        text-align: center;
+      }
+  
+      h1 {
+        color: #555;
+      }
+    }
+  
+    &__items {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      @media (max-width: 576px) {
+        justify-content: center;
+      }
+    }
+  
+    &__item {
+      width: 250px;
+      height: 150px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+  
+      img {
+        width: 50px;
+        height: 50px;
+      }
+  
+      span {
+        font-weight: 300;
+      }
+  
+      &:hover {
+        .explore__line {
+          width: 80px;
+          background-color: #1dbf73;
+        }
+      }
+    }
+  
+    &__line {
+      width: 50px;
+      height: 2px;
+      background-color: lightgray;
+      transition: all 0.3s ease;
+    }
+  }
+  

@@ -11,7 +11,7 @@ const Featured = () => {
 
   return (
     <>
-      <div className="featured">
+      <section className="featured">
         <div className="featured__container">
           <div className="featured__left">
             <h1>
@@ -40,8 +40,8 @@ const Featured = () => {
             <img src="./img/man.png" alt="" />
           </div>
         </div>
-      </div>
-      <div className="trusted">
+      </section>
+      <section className="trusted">
         <div className="trusted__container">
           <span>Trusted by:</span>
           <img
@@ -65,7 +65,7 @@ const Featured = () => {
             alt=""
           />
         </div>
-      </div>
+      </section>
     </>
   );
 };
