@@ -19,7 +19,7 @@ const Featured = () => {
             </h1>
             <div className="featured__search">
               <div className="featured__searchInput">
-                <img src="./img/search.png" alt="" />
+                <img src="./img/search.webp" alt="" />
                 <input
                   type="text"
                   placeholder='Try "building mobile app"'
@@ -37,7 +37,7 @@ const Featured = () => {
             </div>
           </div>
           <div className="featured__right">
-            <img src="./img/man.png" alt="" />
+            <img src="./img/man.webp" alt="" />
           </div>
         </div>
       </section>

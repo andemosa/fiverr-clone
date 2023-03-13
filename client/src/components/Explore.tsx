@@ -6,7 +6,7 @@ const Explore = () => {
           <div className="features__item">
             <h1>A whole world of freelance talent at your fingertips</h1>
             <div className="features__item-title">
-              <img src="./img/check.png" alt="" />
+              <img src="./img/check.webp" alt="" />
               The best for every budget
             </div>
             <p>
@@ -14,7 +14,7 @@ const Explore = () => {
               just project-based pricing.
             </p>
             <div className="features__item-title">
-              <img src="./img/check.png" alt="" />
+              <img src="./img/check.webp" alt="" />
               Quality work done quickly
             </div>
             <p>
@@ -22,7 +22,7 @@ const Explore = () => {
               minutes.
             </p>
             <div className="features__item-title">
-              <img src="./img/check.png" alt="" />
+              <img src="./img/check.webp" alt="" />
               Protected payments, every time
             </div>
             <p>
@@ -30,7 +30,7 @@ const Explore = () => {
               until you approve the work.
             </p>
             <div className="features__item-title">
-              <img src="./img/check.png" alt="" />
+              <img src="./img/check.webp" alt="" />
               24/7 support
             </div>
             <p>
@@ -145,17 +145,17 @@ const Explore = () => {
               dedicated to businesses
             </p>
             <div className="features__item-title">
-              <img src="./img/check.png" alt="" />
+              <img src="./img/check.webp" alt="" />
               Connect to freelancers with proven business experience
             </div>
 
             <div className="features__item-title">
-              <img src="./img/check.png" alt="" />
+              <img src="./img/check.webp" alt="" />
               Get matched with the perfect talent by a customer success manager
             </div>
 
             <div className="features__item-title">
-              <img src="./img/check.png" alt="" />
+              <img src="./img/check.webp" alt="" />
               Manage teamwork and boost productivity with one powerful workspace
             </div>
             <button>Explore Fiverr Business</button>
