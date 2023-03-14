@@ -1,0 +1,129 @@
+.gigs {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  &__container {
+    width: 90%;
+    max-width: 1440px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    p {
+      color: #999;
+      font-weight: 300;
+    }
+  }
+
+  &__breadcrumbs {
+    font-weight: 300;
+    text-transform: uppercase;
+    font-size: 13px;
+    color: #555;
+  }
+
+  &__menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    &-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #555;
+      font-weight: 300;
+      flex: 1;
+      @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      input {
+        padding: 5px;
+        border: 1px solid lightgrey;
+        border-radius: 5px;
+        outline: none;
+
+        &::placeholder {
+          color: #999;
+        }
+      }
+
+      button {
+        padding: 5px 10px;
+        background-color: #1dbf73;
+        color: white;
+        border: none;
+        font-weight: 500;
+        border-radius: 5px;
+      }
+    }
+
+    &-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+      flex: 1;
+      justify-content: flex-end;
+      @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-end;
+      }
+
+      div {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      img {
+        width: 15px;
+        cursor: pointer;
+      }
+    }
+
+    &-sortBy {
+      color: #555;
+      font-weight: 300;
+    }
+
+    &-sortType {
+      font-weight: 500;
+    }
+
+    &-rightMenu {
+      padding: 20px;
+      background-color: white;
+      border: 0.5px solid lightgrey;
+      border-radius: 5px;
+      position: absolute;
+      top: 30px;
+      right: 0;
+      z-index: 9;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      color: #555;
+      min-width: 150px;
+
+      @media (max-width: 768px) {
+        top: 50px;
+      }
+
+      span {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+  }
+}
