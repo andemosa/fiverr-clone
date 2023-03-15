@@ -16,7 +16,7 @@ const Gigs = () => {
   };
 
   return (
-    <div className="gigs">
+    <section className="gigs">
       <div className="gigs__container">
         <span className="gigs__breadcrumbs">
           Fiverr &gt; Graphics & Design &gt;{" "}
@@ -61,7 +61,7 @@ const Gigs = () => {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
