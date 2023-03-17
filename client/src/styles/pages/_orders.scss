@@ -1,0 +1,38 @@
+.orders {
+  display: flex;
+  justify-content: center;
+  color: #555;
+
+  &__container {
+    width: 90%;
+    max-width: 1440px;
+    margin: auto;
+
+    table {
+      width: 100%;
+      text-align: center;
+
+      tr {
+        height: 50px;
+        &:nth-child(even) {
+          background-color: #1dbf730f;
+        }
+      }
+    }
+  }
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__image {
+    height: 25px;
+    object-fit: cover;
+  }
+
+  &__message {
+    width: 20px;
+    cursor: pointer;
+  }
+}
