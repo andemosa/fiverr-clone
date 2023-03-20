@@ -2,6 +2,8 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
+import authRouter from "./routes/auth.route";
+
 import { errorHandler } from "./middleware/errorhandler";
 import { invalidRouteHandler } from "./middleware/norouteHandler";
 
@@ -12,7 +14,7 @@ app.use(express.json());
 app.use(cors());
 
 // mount routes
-
+app.use("/api/auth", authRouter)
 
 app.use(errorHandler);
 
