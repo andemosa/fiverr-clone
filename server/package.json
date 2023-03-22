@@ -32,6 +32,7 @@
     "@types/jsonwebtoken": "^8.5.5",
     "@types/node": "^16.10.2",
     "@types/pino": "^6.3.11",
+    "@types/pino-std-serializers": "4.0.0",
     "ts-node-dev": "^1.1.8"
   }
 }
