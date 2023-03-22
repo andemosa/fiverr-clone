@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
-const currentUser = {
-  username: "andemosa",
-  isSeller: true,
-  img: null,
-};
+import { axiosInstance } from "@services/index";
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
 
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  const currentUser = JSON.parse(localStorage.getItem("currentUser")!)?.user;
 
   const isActive = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false);
@@ -24,6 +23,16 @@ const Navbar = () => {
     };
   }, []);
 
+  const handleLogout = async () => {
+    try {
+      await axiosInstance.post("/auth/logout");
+      localStorage.removeItem("currentUser");
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <nav className={active || pathname !== "/" ? "navbar active" : "navbar"}>
       <div className="navbar__container">
@@ -34,17 +43,19 @@ const Navbar = () => {
           <span className="navbar__logo__dot">.</span>
         </div>
         <ul className="navbar__links">
-          <li>Fiverr Business</li>
-          <li>Explore</li>
-          <li>English</li>
-          {!currentUser?.isSeller && <li>Become a Seller</li>}
+          <li className="navbar__links-ads">Fiverr Business</li>
+          <li className="navbar__links-ads">Explore</li>
+          <li className="navbar__links-ads">English</li>
+          {!currentUser?.isSeller && (
+            <li className="navbar__links-ads">Become a Seller</li>
+          )}
           {currentUser ? (
             <div className="navbar__user" onClick={() => setOpen(!open)}>
               <img src={currentUser?.img || "/img/noavatar.webp"} alt="" />
               <li>{currentUser?.username}</li>
               {open && (
                 <ul className="navbar__user__options">
-                  {currentUser.isSeller && (
+                  {currentUser?.isSeller && (
                     <>
                       <li>
                         <Link to="/mygigs">Gigs</Link>
@@ -61,7 +72,7 @@ const Navbar = () => {
                   <li>
                     <Link to="/messages">Messages</Link>
                   </li>
-                  <li>Logout</li>
+                  <li onClick={handleLogout}>Logout</li>
                 </ul>
               )}
             </div>

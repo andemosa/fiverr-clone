@@ -11,10 +11,15 @@ const app = express();
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://fiverr-clone-mauve.vercel.app/", "http://localhost:5173"],
+    credentials: true,
+  })
+);
 
 // mount routes
-app.use("/api/auth", authRouter)
+app.use("/api/auth", authRouter);
 
 app.use(errorHandler);
 
