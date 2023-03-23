@@ -12,6 +12,7 @@ import Orders from "@pages/Orders";
 import Pay from "@pages/Pay";
 import Register from "@pages/Register";
 import Success from "@pages/Success";
+import PageNotFound from "@pages/404";
 
 import Layout from "@components/Layout";
 
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
       {
         path: "/success",
         element: <Success />,
+      },
+      {
+        path: "/*",
+        element: <PageNotFound />,
       },
     ],
   },
