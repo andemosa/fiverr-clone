@@ -3,14 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 import { axiosInstance } from "@services/index";
 
-interface IError {
-  errorMessage: string;
-}
-
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<IError | null>(null);
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
@@ -24,7 +20,7 @@ const Login = () => {
       localStorage.setItem("currentUser", JSON.stringify(res.data));
       navigate("/");
     } catch (err: any) {
-      setError(err.response.data);
+      setError(err.response.data.errorMessage ?? "An error occurred. Please try again");
     }
   };
 
@@ -52,7 +48,7 @@ const Login = () => {
           />
         </label>
         <button>Login</button>
-        <p>{error && error.errorMessage}</p>
+        <p>{error && error}</p>
       </form>
     </section>
   );

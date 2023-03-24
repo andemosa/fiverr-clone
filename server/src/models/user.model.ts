@@ -7,7 +7,7 @@ interface IUser {
   email: string;
   password: string;
   avatar?: string;
-  country?: string;
+  country: string;
   phone?: string;
   description?: string;
   isSeller?: boolean;
