@@ -2,25 +2,32 @@ import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { axiosInstance } from "@services/index";
+import useForm from "@hooks/useForm.hook";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+
+  const { formState, submittingForm, formError, formSuccess } = useForm();
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    submittingForm();
+    
     try {
       const res = await axiosInstance.post("/auth/login", {
         username,
         password,
       });
       localStorage.setItem("currentUser", JSON.stringify(res.data));
+      formSuccess("");
       navigate("/");
     } catch (err: any) {
-      setError(err.response.data.errorMessage ?? "An error occurred. Please try again");
+      formError(
+        err.response.data.errorMessage ?? "An error occurred. Please try again"
+      );
     }
   };
 
@@ -48,7 +55,7 @@ const Login = () => {
           />
         </label>
         <button>Login</button>
-        <p>{error && error}</p>
+        <pre>{formState.error && formState.error}</pre>
       </form>
     </section>
   );

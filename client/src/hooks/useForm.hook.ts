@@ -31,5 +31,5 @@ export default function useForm() {
     });
   };
 
-  return [formState, submittingForm, formError, formSuccess];
+  return { formState, submittingForm, formError, formSuccess };
 }

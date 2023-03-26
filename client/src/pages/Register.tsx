@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { axiosInstance } from "@services/index";
 import uploadImage from "@utils/upload";
+import useForm from "@hooks/useForm.hook";
 
 import { countries } from "data";
 
@@ -17,7 +18,7 @@ const Register = () => {
     phone: "",
     description: "",
   });
-  const [error, setError] = useState("");
+  const { formState, submittingForm, formError, formSuccess } = useForm();
 
   const navigate = useNavigate();
 
@@ -40,6 +41,7 @@ const Register = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    submittingForm();
 
     try {
       const { data } = await uploadImage(formData.avatar);
@@ -49,10 +51,12 @@ const Register = () => {
         ...formData,
         avatar: url,
       });
+      formSuccess("");
       navigate("/login");
     } catch (err: any) {
-      setError(
-        err.response.data.errorMessage ?? "An error occurred. Please try again"
+      formError(
+        (err.response.data.errorMessage || err.response.data.error?.message) ??
+          "An error occurred. Please try again"
       );
     }
   };
@@ -155,7 +159,7 @@ const Register = () => {
           </div>
         </div>
         <button>Register</button>
-        <pre>{error && error}</pre>
+        <pre>{formState.error && formState.error}</pre>
       </form>
     </section>
   );
