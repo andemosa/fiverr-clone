@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import Button from "@components/Button";
 import { axiosInstance } from "@services/index";
 import uploadImage from "@utils/upload";
 import useForm from "@hooks/useForm.hook";
@@ -158,7 +159,12 @@ const Register = () => {
             </label>
           </div>
         </div>
-        <button>Register</button>
+        <Button
+          isLoading={formState.submitting}
+          disabled={formState.submitting}
+        >
+          Register
+        </Button>
         <pre>{formState.error && formState.error}</pre>
       </form>
     </section>

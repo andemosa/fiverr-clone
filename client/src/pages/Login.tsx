@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import Button from "@components/Button";
 import { axiosInstance } from "@services/index";
 import useForm from "@hooks/useForm.hook";
 
@@ -15,7 +16,7 @@ const Login = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     submittingForm();
-    
+
     try {
       const res = await axiosInstance.post("/auth/login", {
         username,
@@ -54,7 +55,12 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <button>Login</button>
+        <Button
+          isLoading={formState.submitting}
+          disabled={formState.submitting}
+        >
+          Login
+        </Button>
         <pre>{formState.error && formState.error}</pre>
       </form>
     </section>

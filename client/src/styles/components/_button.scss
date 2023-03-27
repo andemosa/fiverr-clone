@@ -1,0 +1,35 @@
+.button__container {
+  border: none;
+  display: inline-block;
+  width: 100%;
+  padding: 15px;
+  border-radius: 5px;
+  border: none;
+  margin: 0;
+  background: #1dbf73;
+  color: hsl(200, 15%, 90%);
+  transition: background 250ms ease-in-out, transform 150ms ease;
+
+  :hover,
+  :focus {
+    background: #1dbf73;
+  }
+
+  &-spinner {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    > span {
+      position: absolute;
+
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
