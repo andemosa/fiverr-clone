@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 
 import authRouter from "./routes/auth.route";
+import gigRouter from "./routes/gig.route";
 
 import { errorHandler } from "./middleware/errorhandler";
 import { invalidRouteHandler } from "./middleware/norouteHandler";
@@ -20,6 +21,7 @@ app.use(
 
 // mount routes
 app.use("/api/auth", authRouter);
+app.use("/api/gigs", gigRouter);
 
 app.use(errorHandler);
 
