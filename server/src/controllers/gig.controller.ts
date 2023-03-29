@@ -27,4 +27,41 @@ const createGig = async (
   }
 };
 
-export default { createGig };
+const deleteGig = async (
+  req: Request<{ id: string }>,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const gig = await Gig.findById(req.params.id);
+    if (gig && gig.user !== res.locals.userId)
+      return next(createError(403, 3, "You can delete only your gig!"));
+
+    await Gig.findByIdAndDelete(req.params.id);
+    res.status(200).json({
+      success: true,
+      message: "Gig has been deleted!",
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const getGig = async (
+  req: Request<{ id: string }>,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const gig = await Gig.findById(req.params.id);
+    if (!gig) next(createError(404, 5, "Gig not found!"));
+    res.status(200).json({
+      success: true,
+      gig,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { createGig, getGig, deleteGig };
