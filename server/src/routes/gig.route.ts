@@ -10,7 +10,9 @@ import { CreateGigSchema } from "../schema/gig.schema";
 const gigRouter = express.Router();
 
 gigRouter.post("/", verifyToken, validate(CreateGigSchema), gigCtrl.createGig);
+gigRouter.get("/", gigCtrl.getGigs);
+
 gigRouter.get("/:id", gigCtrl.getGig);
-gigRouter.delete("/:id", gigCtrl.deleteGig);
+gigRouter.delete("/:id", verifyToken, gigCtrl.deleteGig);
 
 export default gigRouter;

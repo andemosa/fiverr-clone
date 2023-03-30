@@ -6,6 +6,15 @@ import { CreateGigInput } from "../schema/gig.schema";
 
 import createError from "../utils/createError";
 
+interface IQuery {
+  user: string;
+  category: string;
+  search: string;
+  sort: string;
+  min: number;
+  max: number;
+}
+
 const createGig = async (
   req: Request<{}, {}, CreateGigInput["body"]>,
   res: Response,
@@ -34,6 +43,9 @@ const deleteGig = async (
 ) => {
   try {
     const gig = await Gig.findById(req.params.id);
+
+    if (!gig) next(createError(404, 5, "Gig not found!"));
+
     if (gig && gig.user !== res.locals.userId)
       return next(createError(403, 3, "You can delete only your gig!"));
 
@@ -53,15 +65,42 @@ const getGig = async (
   next: NextFunction
 ) => {
   try {
-    const gig = await Gig.findById(req.params.id);
+    const gig = await Gig.findById(req.params.id).populate(
+      "user",
+      "username avatar"
+    );
     if (!gig) next(createError(404, 5, "Gig not found!"));
-    res.status(200).json({
-      success: true,
-      gig,
-    });
+    res.status(200).json(gig);
   } catch (err) {
     next(err);
   }
 };
 
-export default { createGig, getGig, deleteGig };
+const getGigs = async (
+  req: Request<{}, {}, {}, IQuery>,
+  res: Response,
+  next: NextFunction
+) => {
+  const q = req.query;
+  const filters = {
+    ...(q.user && { user: { $regex: q.user, $options: "i" } }),
+    ...(q.category && { category: { $regex: q.category, $options: "i" } }),
+    ...((q.min || q.max) && {
+      price: {
+        ...(q.min && { $gt: q.min }),
+        ...(q.max && { $lt: q.max }),
+      },
+    }),
+    ...(q.search && { title: { $regex: q.search, $options: "i" } }),
+  };
+  try {
+    const gigs = await Gig.find(filters)
+      .populate("user", "username avatar")
+      .sort({ [q.sort]: -1 });
+    res.status(200).json(gigs);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { createGig, getGig, deleteGig, getGigs };
