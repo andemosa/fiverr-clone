@@ -56,7 +56,7 @@ const Register = () => {
       navigate("/login");
     } catch (err: any) {
       formError(
-        (err.response.data.errorMessage || err.response.data.error?.message) ??
+        (err.response?.data?.errorMessage || err.response?.data?.error?.message) ??
           "An error occurred. Please try again"
       );
     }

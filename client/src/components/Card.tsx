@@ -1,29 +1,33 @@
 import { Link } from "react-router-dom";
 
-interface IProps {
-  id: number;
-  img: string;
-  pic: string;
-  desc: string;
-  price: number;
-  star: number;
-  username: string;
-}
+import { Gig } from "@customTypes/gig";
 
-const GigCard = ({ id, desc, img, pic, price, star, username }: IProps) => {
+const GigCard = ({
+  _id,
+  coverImage,
+  price,
+  description,
+  user,
+  totalStars,
+  starNumber,
+}: Gig) => {
+  const { avatar, username } = user;
   return (
-    <Link to={`/gig/${id}`}>
+    <Link to={`/gig/${_id}`}>
       <div className="gigCard">
-        <img src={img} alt="" />
+        <img src={coverImage} alt="" />
         <div className="gigCard__info">
           <div className="gigCard__user">
-            <img src={pic || "/img/noavatar.webp"} alt="" />
+            <img src={avatar || "/img/noavatar.webp"} alt="" />
             <span>{username}</span>
           </div>
-          <p>{desc}</p>
+          <p>{description}</p>
           <div className="gigCard__star">
             <img src="./img/star.webp" alt="" />
-            <span>{star}</span>
+            <span>
+              {!isNaN(totalStars / starNumber) &&
+                Math.round(totalStars / starNumber)}
+            </span>
           </div>
         </div>
         <hr />

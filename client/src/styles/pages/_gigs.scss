@@ -10,6 +10,10 @@
     flex-direction: column;
     gap: 15px;
 
+    h1 {
+      text-transform: capitalize;
+    }
+
     p {
       color: #999;
       font-weight: 300;
@@ -124,6 +128,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: space-around;
+    justify-content: space-between;
   }
 }
