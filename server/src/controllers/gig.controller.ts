@@ -67,7 +67,7 @@ const getGig = async (
   try {
     const gig = await Gig.findById(req.params.id).populate(
       "user",
-      "username avatar"
+      "username avatar country createdAt description"
     );
     if (!gig) next(createError(404, 5, "Gig not found!"));
     res.status(200).json(gig);

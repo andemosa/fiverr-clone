@@ -1,6 +1,14 @@
-import Reviews from "@components/Reviews";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Slider from "react-slick";
+import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat";
+
+import DataFetcher from "@components/DataFetcher";
+import Reviews from "@components/Reviews";
+
+import { Gig } from "@customTypes/gig";
+
+dayjs.extend(advancedFormat);
 
 const settings = {
   dots: true,
@@ -11,50 +19,90 @@ const settings = {
   cssEase: "linear",
 };
 
-const Gig = () => {
+const GigPage = () => {
+  const { id } = useParams();
+
+  return (
+    <DataFetcher<Gig>
+      url={`/gigs/${id}`}
+      buildUI={(data) => <GigDisplay {...data} />}
+    />
+  );
+};
+
+const GigDisplay = ({
+  _id,
+  category,
+  coverImage,
+  deliveryTime,
+  description,
+  price,
+  revisionNumber,
+  sales,
+  shortDescription,
+  shortTitle,
+  starNumber,
+  title,
+  totalStars,
+  user,
+  features,
+  images,
+}: Gig) => {
   return (
     <section className="gig">
       <div className="gig__container">
         <div className="gig__left">
           <span className="gig__breadcrumbs">
-            Fiverr {">"} Graphics & Design {">"}
+            Fiverr {">"} {category} {">"}
           </span>
-          <h1>I will create a simple website for you with about 3-5 pages</h1>
+          <h1>{title}</h1>
           <div className="gig__user">
-            <img className="gig__user-pp" src={"/img/noavatar.webp"} alt="" />
-            <span>John</span>
-            <div className="gig__user-stars">
-              <img src="/img/star.webp" alt="" />
-              <span>5</span>
-            </div>
+            <img
+              className="gig__user-pp"
+              src={user.avatar ?? "/img/noavatar.webp"}
+              alt={user.username}
+            />
+            <span>{user.username}</span>
+            {!isNaN(totalStars / starNumber) && (
+              <div className="stars">
+                {Array.from({
+                  length: Math.round(totalStars / starNumber),
+                }).map((_, i) => (
+                  <img src="/img/star.webp" alt="" key={i} />
+                ))}
+                <span>{Math.round(totalStars / starNumber)}</span>
+              </div>
+            )}
           </div>
           <Slider {...settings} className="gig__left-slider">
-            {Array.from({ length: 5 }).map((img, i) => (
-              <img
-                key={i}
-                src={
-                  "https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                }
-                alt=""
-              />
-            ))}
+            {images.length > 0
+              ? images.map((img) => <img key={img} src={img} alt="" />)
+              : Array.from({ length: 3 }).map((_, i) => (
+                  <img key={i} src={coverImage} alt="" />
+                ))}
           </Slider>
           <h2>About This Gig</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore
-            nesciunt voluptates libero vitae quidem odio illum aliquam quas
-            laborum a! Voluptates, sequi distinctio delectus nemo totam
-            doloremque? Consequuntur, hic perspiciatis.
-          </p>
+          <p>{description}</p>
           <div className="gig__seller">
             <h2>About The Seller</h2>
             <div className="gig__seller__user">
-              <img src={"/img/noavatar.webp"} alt="" />
+              <img
+                src={user.avatar ?? "/img/noavatar.webp"}
+                alt={user.username}
+              />
               <div className="gig__seller__user-info">
-                <span>John</span>
+                <span>{user.username}</span>
                 <div className="gig__seller__user-stars">
-                  <img src="/img/star.webp" alt="" />
-                  <span>5</span>
+                  {!isNaN(totalStars / starNumber) && (
+                    <div className="stars">
+                      {Array.from({
+                        length: Math.round(totalStars / starNumber),
+                      }).map((_, i) => (
+                        <img src="/img/star.webp" alt="" key={i} />
+                      ))}
+                      <span>{Math.round(totalStars / starNumber)}</span>
+                    </div>
+                  )}
                 </div>
                 <button>Contact Me</button>
               </div>
@@ -63,11 +111,13 @@ const Gig = () => {
               <div className="gig__seller__items">
                 <div className="gig__seller__item">
                   <span className="gig__seller__item-title">From</span>
-                  <span className="gig__seller__item-desc">Nigeria</span>
+                  <span className="gig__seller__item-desc">{user.country}</span>
                 </div>
                 <div className="gig__seller__item">
                   <span className="gig__seller__item-title">Member since</span>
-                  <span className="gig__seller__item-desc">Aug 2022</span>
+                  <span className="gig__seller__item-desc">
+                    {dayjs(user.createdAt).format("MMM YYYY")}
+                  </span>
                 </div>
                 <div className="gig__seller__item">
                   <span className="gig__seller__item-title">
@@ -85,46 +135,36 @@ const Gig = () => {
                 </div>
               </div>
               <hr />
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Obcaecati, suscipit voluptas? Doloribus culpa voluptate error
-                sit nisi autem ipsam ullam fugiat expedita placeat enim eos,
-                vitae, repellendus fugit fuga ut?
-              </p>
+              <p>{user.description}</p>
             </div>
           </div>
         </div>
 
         <div className="gig__right">
           <div className="gig__right__price">
-            <h3>title</h3>
-            <h2>$ 200</h2>
+            <h3>{shortTitle}</h3>
+            <h2>$ {price}</h2>
           </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis
-            aspernatur ea, doloribus dicta explicabo est iusto ipsa ipsum! Quas,
-            eligendi fugiat nostrum vel dicta tenetur numquam assumenda
-            aspernatur illo amet?
-          </p>
+          <p>{shortDescription}</p>
           <div className="gig__right__details">
             <div className="gig__right__details-item">
               <img src="/img/clock.webp" alt="" />
-              <span>5 Days Delivery</span>
+              <span>{deliveryTime} Days Delivery</span>
             </div>
             <div className="gig__right__details-item">
               <img src="/img/recycle.webp" alt="" />
-              <span>10 Revisions</span>
+              <span>{revisionNumber} Revisions</span>
             </div>
           </div>
           <div className="gig__right__features">
-            {Array.from({ length: 5 }).map((feature, i) => (
+            {features.map((feature, i) => (
               <div className="gig__right__features-item" key={i}>
-                <img src="/img/greencheck.webp" alt="" />
-                <span>{i}</span>
+                <img src="/img/greencheck.webp" alt="feat" />
+                <span>{feature}</span>
               </div>
             ))}
           </div>
-          <Link to={`/pay/2`}>
+          <Link to={`/pay/${_id}`}>
             <button>Continue</button>
           </Link>
         </div>
@@ -134,4 +174,4 @@ const Gig = () => {
   );
 };
 
-export default Gig;
+export default GigPage;

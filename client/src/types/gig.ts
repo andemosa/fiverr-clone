@@ -7,17 +7,20 @@ export interface Gig {
   category: string;
   price: number;
   coverImage: string;
-  images?: string[];
+  images: string[];
   user: {
     _id: string;
     username: string;
     avatar: string;
+    country: string;
+    description: string;
+    createdAt: string;
   };
   shortTitle: string;
   shortDescription: string;
   deliveryTime: number;
   revisionNumber: number;
-  features?: string[];
+  features: string[];
   sales: number;
   createdAt: string;
   updatedAt: string;
