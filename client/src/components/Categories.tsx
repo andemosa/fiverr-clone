@@ -7,11 +7,12 @@ interface IProps {
   img: string;
   desc: string;
   title: string;
+  category: string;
 }
 
-const Card = ({ desc, img, title }: IProps) => {
+const Card = ({ desc, img, title, category }: IProps) => {
   return (
-    <Link to="/gigs?cat=design">
+    <Link to={`/gigs?category=${category}`}>
       <div className="catCard">
         <img src={img} alt="" />
         <div className="catCard__overlay">

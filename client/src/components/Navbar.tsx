@@ -44,7 +44,9 @@ const Navbar = () => {
         </div>
         <ul className="navbar__links">
           <li className="navbar__links-ads">Fiverr Business</li>
-          <li className="navbar__links-ads">Explore</li>
+          <li className="navbar__links-ads">
+            <Link to="/gigs">Explore</Link>
+          </li>
           <li className="navbar__links-ads">English</li>
           {!currentUser?.isSeller && (
             <li className="navbar__links-ads">Become a Seller</li>
