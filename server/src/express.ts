@@ -4,6 +4,7 @@ import cors from "cors";
 
 import authRouter from "./routes/auth.route";
 import gigRouter from "./routes/gig.route";
+import reviewRouter from "./routes/review.route";
 
 import { errorHandler } from "./middleware/errorhandler";
 import { invalidRouteHandler } from "./middleware/norouteHandler";
@@ -22,6 +23,7 @@ app.use(
 // mount routes
 app.use("/api/auth", authRouter);
 app.use("/api/gigs", gigRouter);
+app.use("/api/reviews", reviewRouter);
 
 app.use(errorHandler);
 
