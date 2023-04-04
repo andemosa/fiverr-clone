@@ -1,22 +1,28 @@
-const Review = () => {
+import { IReview } from "@customTypes/review";
+
+const Review = ({ user, star, description }: IReview) => {
   return (
     <div className="review">
       <div className="review__user">
-        <img className="review__user-pic" src={"/img/noavatar.webp"} alt="" />
+        <img
+          className="review__user-pic"
+          src={user.avatar ?? "/img/noavatar.webp"}
+          alt={user.username}
+        />
         <div className="review__user-info">
-          <span>John Doe</span>
+          <span>{user.username}</span>
           <div className="review__user-country">
-            <span>Togo</span>
+            <span>{user.country}</span>
           </div>
         </div>
       </div>
       <div className="review__stars">
-        {Array.from({ length: 5 }).map((_, i) => (
+        {Array.from({ length: star }).map((_, i) => (
           <img src="/img/star.webp" alt="" key={i} />
         ))}
-        <span>5</span>
+        <span>{star}</span>
       </div>
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. </p>
+      <p>{description}</p>
       <div className="review__helpful">
         <span>Helpful?</span>
         <img src="/img/like.webp" alt="" />

@@ -1,4 +1,4 @@
-export interface Gig {
+export interface IGig {
   _id: string;
   title: string;
   description: string;

@@ -6,7 +6,7 @@ import advancedFormat from "dayjs/plugin/advancedFormat";
 import DataFetcher from "@components/DataFetcher";
 import Reviews from "@components/Reviews";
 
-import { Gig } from "@customTypes/gig";
+import { IGig } from "@customTypes/gig";
 
 dayjs.extend(advancedFormat);
 
@@ -23,7 +23,7 @@ const GigPage = () => {
   const { id } = useParams();
 
   return (
-    <DataFetcher<Gig>
+    <DataFetcher<IGig>
       url={`/gigs/${id}`}
       buildUI={(data) => <GigDisplay {...data} />}
     />
@@ -47,7 +47,7 @@ const GigDisplay = ({
   user,
   features,
   images,
-}: Gig) => {
+}: IGig) => {
   return (
     <section className="gig">
       <div className="gig__container">
@@ -64,7 +64,7 @@ const GigDisplay = ({
             />
             <span>{user.username}</span>
             {!isNaN(totalStars / starNumber) && (
-              <div className="stars">
+              <div className="gig__user-stars">
                 {Array.from({
                   length: Math.round(totalStars / starNumber),
                 }).map((_, i) => (
@@ -92,18 +92,16 @@ const GigDisplay = ({
               />
               <div className="gig__seller__user-info">
                 <span>{user.username}</span>
-                <div className="gig__seller__user-stars">
-                  {!isNaN(totalStars / starNumber) && (
-                    <div className="stars">
-                      {Array.from({
-                        length: Math.round(totalStars / starNumber),
-                      }).map((_, i) => (
-                        <img src="/img/star.webp" alt="" key={i} />
-                      ))}
-                      <span>{Math.round(totalStars / starNumber)}</span>
-                    </div>
-                  )}
-                </div>
+                {!isNaN(totalStars / starNumber) && (
+                  <div className="gig__seller__user-stars">
+                    {Array.from({
+                      length: Math.round(totalStars / starNumber),
+                    }).map((_, i) => (
+                      <img src="/img/star.webp" alt="" key={i} />
+                    ))}
+                    <span>{Math.round(totalStars / starNumber)}</span>
+                  </div>
+                )}
                 <button>Contact Me</button>
               </div>
             </div>
@@ -169,7 +167,7 @@ const GigDisplay = ({
           </Link>
         </div>
       </div>
-      <Reviews />
+      <Reviews gigId={_id}/>
     </section>
   );
 };

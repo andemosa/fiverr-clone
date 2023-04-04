@@ -34,14 +34,10 @@
         border-radius: 5px;
       }
 
-      button {
-        align-self: flex-end;
-        width: 100%;
-        border: none;
-        padding: 10px;
-        color: white;
-        background-color: #1dbf73;
-        border-radius: 5px;
+      pre {
+        color: red;
+        font-size: 14px;
+        text-align: center;
       }
     }
   }
