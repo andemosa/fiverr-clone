@@ -7,7 +7,7 @@ import logger from "./utils/logger";
 dotenv.config();
 const PORT = process.env.PORT || 4000;
 
-mongoose.set("strictQuery", true);
+mongoose.set("strictQuery", false);
 
 const DB_CONNECTION_STRING =
   process.env.MONGO_URI || "mongodb://localhost:27017/fiverrclone";
