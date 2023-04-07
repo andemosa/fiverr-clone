@@ -6,6 +6,7 @@ import authRouter from "./routes/auth.route";
 import gigRouter from "./routes/gig.route";
 import reviewRouter from "./routes/review.route";
 import orderRouter from "./routes/order.route";
+import conversationRouter from "./routes/conversation.route";
 
 import { errorHandler } from "./middleware/errorhandler";
 import { invalidRouteHandler } from "./middleware/norouteHandler";
@@ -26,6 +27,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/gigs", gigRouter);
 app.use("/api/reviews", reviewRouter);
 app.use("/api/orders", orderRouter);
+app.use("/api/conversations", conversationRouter);
 
 app.use(errorHandler);
 
