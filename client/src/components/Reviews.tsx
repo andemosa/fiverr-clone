@@ -23,7 +23,7 @@ interface IPostReview {
   star: number;
 }
 
-const ReviewsPage = ({ gigId }: IPageProps) => {
+const ReviewsComponent = ({ gigId }: IPageProps) => {
   return (
     <DataFetcher<IReview[]>
       url={`/reviews/${gigId}`}
@@ -113,4 +113,4 @@ const ReviewsDisplay = ({ data, gigId }: IDisplayProps) => {
   );
 };
 
-export default ReviewsPage;
+export default ReviewsComponent;

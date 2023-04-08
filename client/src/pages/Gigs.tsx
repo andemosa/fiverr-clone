@@ -6,7 +6,7 @@ import GigCard from "@components/Card";
 import LoadingSpinner from "@components/Spinner";
 
 import { axiosInstance } from "@services/index";
-import { Gig } from "@customTypes/gig";
+import { IGig } from "@customTypes/gig";
 
 const Gigs = () => {
   const [sort, setSort] = useState("sales");
@@ -19,7 +19,7 @@ const Gigs = () => {
 
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: ["gigs"],
-    queryFn: (): Promise<Gig[]> =>
+    queryFn: (): Promise<IGig[]> =>
       axiosInstance
         .get(
           `/gigs?category=${category ?? ""}&min=${minRef.current?.value}&max=${
