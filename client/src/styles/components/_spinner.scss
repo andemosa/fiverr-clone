@@ -8,28 +8,31 @@
   align-items: center;
   justify-content: center;
 
-  &.small {
-    min-height: 0;
-    max-height: 0;
-    padding-top: 0;
-  }
-
   &-con {
     display: inline-block;
     position: relative;
-    width: 18px;
-    height: 18px;
+
+    &.button-spinner {
+      width: 18px;
+      height: 18px;
+    }
 
     div {
       box-sizing: border-box;
       display: block;
       position: absolute;
-      width: 18px;
-      height: 18px;
+      width: 40px;
+      height: 40px;
       border: 3px solid;
       border-radius: 50%;
       animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-      border-color: white transparent transparent transparent;
+      border-color: #1dbf73 transparent transparent transparent;
+
+      &.button-spinner {
+        border-color: white transparent transparent transparent;
+        width: 18px;
+        height: 18px;
+      }
     }
 
     div:nth-child(1) {

@@ -1,15 +1,18 @@
-export const Spinner = () => (
-  <div className="spinner__wrapper-con" role="img" aria-label="Loading">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
+export const Spinner = ({ button = false }) => (
+  <div
+    className={`spinner__wrapper-con ${button && "button-spinner"}`}
+    role="img"
+    aria-label="Loading"
+  >
+    {Array.from({ length: 4 }).map((_, i) => (
+      <div className={button ? "button-spinner" : ""} key={i}></div>
+    ))}
   </div>
 );
 
-const LoadingSpinner = ({ small = false }) => {
+const LoadingSpinner = () => {
   return (
-    <div className={small ? "spinner__wrapper small" : "spinner__wrapper"}>
+    <div className="spinner__wrapper">
       <Spinner />
     </div>
   );

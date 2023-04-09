@@ -13,7 +13,7 @@ const Button = ({
     {isLoading && (
       <span className="button__container-spinner">
         <span>
-          <Spinner />
+          <Spinner button />
         </span>
       </span>
     )}
