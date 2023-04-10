@@ -4,8 +4,22 @@ export interface IOrder {
   image: string;
   title: string;
   price: number;
-  seller: string;
-  buyer: string;
+  seller: {
+    _id: string;
+    username: string;
+    avatar: string;
+    country: string;
+    description: string;
+    createdAt: string;
+  };
+  buyer: {
+    _id: string;
+    username: string;
+    avatar: string;
+    country: string;
+    description: string;
+    createdAt: string;
+  };
   completed: boolean;
   payment_intent: string;
   createdAt: string;

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { Gig } from "@customTypes/gig";
+import { IGig } from "@customTypes/gig";
 
 const GigCard = ({
   _id,
@@ -10,7 +10,7 @@ const GigCard = ({
   user,
   totalStars,
   starNumber,
-}: Gig) => {
+}: IGig) => {
   const { avatar, username } = user;
   return (
     <Link to={`/gig/${_id}`}>
