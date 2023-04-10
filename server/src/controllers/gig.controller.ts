@@ -83,7 +83,7 @@ const getGigs = async (
 ) => {
   const q = req.query;
   const filters = {
-    ...(q.user && { user: { $regex: q.user, $options: "i" } }),
+    ...(q.user && { user: q.user }),
     ...(q.category && { category: { $regex: q.category, $options: "i" } }),
     ...((q.min || q.max) && {
       price: {
