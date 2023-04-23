@@ -53,7 +53,7 @@ const Navbar = () => {
           )}
           {currentUser ? (
             <div className="navbar__user" onClick={() => setOpen(!open)}>
-              <img src={currentUser?.img || "/img/noavatar.webp"} alt="" />
+              <img src={currentUser?.avatar || "/img/noavatar.webp"} alt="" />
               <li>{currentUser?.username}</li>
               {open && (
                 <ul className="navbar__user__options">

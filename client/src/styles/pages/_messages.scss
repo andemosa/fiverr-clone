@@ -8,34 +8,27 @@
     margin: auto;
 
     table {
+      border-collapse: collapse;
       width: 100%;
-      text-align: center;
 
-      tr {
-        height: 100px;
+      td,
+      th {
+        border: 1px solid #beb5b5;
+        text-align: center;
+        padding: 20px;
+      }
 
-        td {
-          padding: 10px;
-          text-align: left;
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
 
-          &:first-child {
-            font-weight: 500;
-          }
-
-          &:nth-child(2),
-          &:nth-child(3) {
-            color: gray;
-          }
-        }
-
-        button {
-          background-color: #1dbf73;
-          color: white;
-          padding: 8px;
-          border: none;
-          border-radius: 5px;
-          font-size: 12px;
-        }
+      button {
+        background-color: #1dbf73;
+        color: white;
+        padding: 8px;
+        border: none;
+        border-radius: 5px;
+        font-size: 12px;
       }
     }
   }
@@ -43,9 +36,16 @@
   &__title {
     display: flex;
     justify-content: space-between;
+    margin: 2rem 0;
   }
 
   &__active {
     background-color: #1dbf730f;
+  }
+
+  pre {
+    color: red;
+    font-size: 14px;
+    text-align: center;
   }
 }
