@@ -30,7 +30,7 @@ const createReview = async (
 
     if (review)
       return next(
-        createError(403, 3, "You have already created a review for this gig!")
+        createError(422, 3, "You have already created a review for this gig!")
       );
 
     const savedReview = await newReview.save();
