@@ -67,4 +67,30 @@ const getOrders = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-export default { createOrder, getOrders };
+const confirmOrder = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    await Order.findOneAndUpdate(
+      {
+        payment_intent: req.body.payment_intent,
+      },
+      {
+        $set: {
+          completed: true,
+        },
+      }
+    );
+
+    res.status(200).json({
+      success: true,
+      message: "Order has been confirmed.",
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { createOrder, getOrders, confirmOrder };
