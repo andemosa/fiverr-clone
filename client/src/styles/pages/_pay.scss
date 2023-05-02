@@ -1,0 +1,12 @@
+.pay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  margin: 3em auto;
+
+  @media only screen and (max-width: 768px) {
+    width: 90%;
+    margin: 1.5em auto;
+  }
+}
