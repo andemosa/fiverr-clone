@@ -1,4 +1,9 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
 
 import Add from "@pages/Add";
 import Gig from "@pages/Gig";
@@ -15,68 +20,31 @@ import Success from "@pages/Success";
 import PageNotFound from "@pages/404";
 
 import Layout from "@components/Layout";
+import ProtectedRoute from "@components/ProtectedRoute";
 
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+      <Route path="/" element={<Home />} />
+      <Route path="gigs" element={<Gigs />} />
+      <Route path="gig/:id" element={<Gig />} />
+      <Route path="login" element={<Login />} />
+      <Route path="register" element={<Register />} />
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Layout />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/gigs",
-        element: <Gigs />,
-      },
-      {
-        path: "/myGigs",
-        element: <MyGigs />,
-      },
-      {
-        path: "/orders",
-        element: <Orders />,
-      },
-      {
-        path: "/messages",
-        element: <Messages />,
-      },
-      {
-        path: "/message/:id",
-        element: <Message />,
-      },
-      {
-        path: "/add",
-        element: <Add />,
-      },
-      {
-        path: "/gig/:id",
-        element: <Gig />,
-      },
-      {
-        path: "/register",
-        element: <Register />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/pay/:id",
-        element: <Pay />,
-      },
-      {
-        path: "/success",
-        element: <Success />,
-      },
-      {
-        path: "/*",
-        element: <PageNotFound />,
-      },
-    ],
-  },
-]);
+      <Route element={<ProtectedRoute />}>
+        <Route path="orders" element={<Orders />} />
+        <Route path="messages" element={<Messages />} />
+        <Route path="messages/:id" element={<Message />} />
+        <Route path="pay/:id" element={<Pay />} />
+        <Route path="success" element={<Success />} />
+        <Route path="mygigs" element={<MyGigs />} />
+        <Route path="add" element={<Add />} />
+      </Route>
+
+      <Route path="*" element={<PageNotFound />} />
+    </Route>
+  )
+);
 
 function App() {
   return <RouterProvider router={router} />;

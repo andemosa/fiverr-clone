@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import Button from "@components/Button";
 import { axiosInstance } from "@services/index";
@@ -8,7 +8,8 @@ import useForm from "@hooks/useForm.hook";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  let location = useLocation();
+  
   const { formState, submittingForm, formError, formSuccess } = useForm();
 
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const Login = () => {
       });
       localStorage.setItem("currentUser", JSON.stringify(res.data));
       formSuccess("");
-      navigate("/");
+      navigate(location.state?.from ?? "/");
     } catch (err: any) {
       formError(
         err.response.data.errorMessage ?? "An error occurred. Please try again"
